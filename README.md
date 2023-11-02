@@ -36,15 +36,13 @@ Opinionated NextJS structure by Pieter Berkel based on most popular packages in 
    NEXTAUTH_SECRET="*******"
    ```
 
-3. Install the T3 Env package
+3. Install the T3 Env package ([T3 Env package](https://env.t3.gg/docs/nextjs))
 
    ```
    pnpm add @t3-oss/env-nextjs zod
    ```
 
-4. Follow the guide in the [T3 Env package](https://env.t3.gg/docs/nextjs)
-
-5. Update "**/src/env.mjs**" file
+4. Update "**/src/env.mjs**" file
 
    ```
     import { createEnv } from "@t3-oss/env-nextjs";
