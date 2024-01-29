@@ -13,11 +13,12 @@ import {
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { useRouter } from "next/navigation";
-import { createPostSchema } from "./validations";
 import { z } from "zod";
-import { createPost } from "./actions";
+import { createPost } from "../actions";
 import { toast } from "sonner";
+import { postSchema } from "~/server/db/schema/posts";
 
+const createPostSchema = postSchema.omit({ id: true });
 type CreatePostValues = z.infer<typeof createPostSchema>;
 
 export const CreatePostForm = () => {

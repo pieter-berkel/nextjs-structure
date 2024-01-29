@@ -1,9 +1,15 @@
 import { notFound } from "next/navigation";
-import { getPost } from "./data";
 import { EditPostForm } from "./_components/edit-post-form";
+import { db } from "~/server/db";
+
+const getPost = async (id: string) => {
+  return await db.query.posts.findFirst({
+    where: (fields, { eq }) => eq(fields.id, id),
+  });
+};
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const post = await getPost({ id: params.id });
+  const post = await getPost(params.id);
 
   if (!post) {
     return notFound();

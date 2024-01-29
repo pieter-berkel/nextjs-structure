@@ -15,28 +15,28 @@ import { Input } from "~/components/ui/input";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { editPost } from "../actions";
-import { getPost } from "../data";
 import { toast } from "sonner";
-import { editPostSchema } from "../validations";
+import { postSchema } from "~/server/db/schema/posts";
 
-const schema = editPostSchema.omit({ id: true });
-type EditPostValues = z.infer<typeof schema>;
+const schema = postSchema.omit({ id: true });
+
+type FormValues = z.infer<typeof schema>;
 
 type EditPostFormProps = {
-  post: NonNullable<Awaited<ReturnType<typeof getPost>>>;
+  post: z.infer<typeof postSchema>;
 };
 
 export const EditPostForm = ({ post }: EditPostFormProps) => {
   const router = useRouter();
 
-  const form = useForm<EditPostValues>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
       name: post.name ?? "",
     },
   });
 
-  const onSubmit = async (values: EditPostValues) => {
+  const onSubmit = async (values: FormValues) => {
     try {
       await editPost({ id: post.id, ...values });
     } catch (error) {

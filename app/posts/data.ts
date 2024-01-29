@@ -1,6 +1,6 @@
 import { sql } from "drizzle-orm";
 import { db } from "~/server/db";
-import * as s from "~/server/db/schema";
+import { posts } from "~/server/db/schema/posts";
 
 const limit = 5;
 
@@ -9,7 +9,7 @@ export const getPostPages = async () => {
     .select({
       count: sql`COUNT(*)`.mapWith(Number).as("count"),
     })
-    .from(s.posts);
+    .from(posts);
 
   return Math.ceil(result[0].count / limit);
 };
