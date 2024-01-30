@@ -14,37 +14,34 @@ import {
 import { Input } from "~/components/ui/input";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
-import { editPost } from "../actions";
-import { getPost } from "../data";
+import { createPost } from "../actions";
 import { toast } from "sonner";
-import { editPostSchema } from "../validations";
 
-const schema = editPostSchema.omit({ id: true });
-type EditPostValues = z.infer<typeof schema>;
+const schema = z.object({
+  name: z.string(),
+});
 
-type EditPostFormProps = {
-  post: NonNullable<Awaited<ReturnType<typeof getPost>>>;
-};
+type FormValues = z.infer<typeof schema>;
 
-export const EditPostForm = ({ post }: EditPostFormProps) => {
+export const CreatePostForm = () => {
   const router = useRouter();
 
-  const form = useForm<EditPostValues>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
-      name: post.name ?? "",
+      name: "",
     },
   });
 
-  const onSubmit = async (values: EditPostValues) => {
+  const onSubmit = async (values: FormValues) => {
     try {
-      await editPost({ id: post.id, ...values });
+      await createPost(values);
     } catch (error) {
       toast("Something went wrong!");
       return;
     }
 
-    toast("Post updated!");
+    toast("Post created!");
     router.push("/posts");
   };
 

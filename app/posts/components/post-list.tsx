@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getPosts } from "./data";
+import { getPosts } from "../server";
 
 export async function PostList({ page = 1 }: { page?: number }) {
   const posts = await getPosts({ page });

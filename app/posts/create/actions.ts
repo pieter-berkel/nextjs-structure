@@ -4,7 +4,10 @@ import { db } from "~/server/db";
 import * as s from "~/server/db/schema";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
-import { createPostSchema } from "./validations";
+
+const createPostSchema = z.object({
+  name: z.string(),
+});
 
 export type CreatePostValues = z.infer<typeof createPostSchema>;
 

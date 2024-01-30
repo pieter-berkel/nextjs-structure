@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { getPost } from "./data";
-import { EditPostForm } from "./_components/edit-post-form";
+import { EditPostForm } from "./components/edit-post-form";
+import { getPost } from "./server";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const post = await getPost({ id: params.id });
