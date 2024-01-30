@@ -1,9 +1,10 @@
 import { Suspense } from "react";
-import { PostList, PostListSkeleton } from "./_components/post-list";
+import { PostList } from "./_components/post-list";
 import { Paginator } from "~/components/paginator";
 import { getPostPages } from "./server";
 import Link from "next/link";
 import { buttonVariants } from "~/components/ui/button";
+import { PostListSkeleton } from "./_components/post-list-skeleton";
 
 export default async function Page({
   searchParams,
