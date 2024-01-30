@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { EditPostForm } from "./components/edit-post-form";
+import { EditPostForm } from "./_components/edit-post-form";
 import { getPost } from "./server";
 
 export default async function Page({ params }: { params: { id: string } }) {

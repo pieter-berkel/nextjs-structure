@@ -13,8 +13,11 @@ const editPostSchema = z.object({
 
 export const editPost = async (values: unknown) => {
   const { id, ...data } = editPostSchema.parse(values);
+
   await db.update(s.posts).set(data).where(eq(s.posts.id, id));
+
   revalidatePath(`/posts`);
+  revalidatePath(`/posts/${id}`);
 };
 
 export const getPost = async ({ id }: { id: string }) => {

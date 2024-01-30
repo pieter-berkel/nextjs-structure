@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { PostList, PostListSkeleton } from "./components/post-list";
+import { PostList, PostListSkeleton } from "./_components/post-list";
 import { Paginator } from "~/components/paginator";
 import { getPostPages } from "./server";
 import Link from "next/link";

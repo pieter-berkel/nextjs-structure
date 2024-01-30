@@ -7,7 +7,7 @@ export async function PostList({ page = 1 }: { page?: number }) {
   return (
     <div className="flex flex-col gap-4">
       {posts.map((post) => (
-        <Link key={post.id} href={`/posts/${post.id}/edit`}>
+        <Link key={post.id} href={`/posts/${post.id}`}>
           <div className="h-12 flex items-center justify-center rounded-lg bg-gray-100 text-black">
             {post.name}
           </div>
