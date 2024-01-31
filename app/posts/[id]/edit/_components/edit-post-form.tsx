@@ -37,15 +37,19 @@ export const EditPostForm = ({ post }: EditPostFormProps) => {
     },
   });
 
+  const {
+    formState: { isSubmitting },
+  } = form;
+
   const onSubmit = async (values: FormValues) => {
     try {
       await editPost({ id: post.id, ...values });
     } catch (error) {
-      toast("Something went wrong!");
+      toast.error("Something went wrong!");
       return;
     }
 
-    toast("Post updated!");
+    toast.success("Post updated!");
     router.push("/posts");
   };
 
@@ -66,7 +70,9 @@ export const EditPostForm = ({ post }: EditPostFormProps) => {
           )}
         />
 
-        <Button type="submit">Versturen</Button>
+        <Button type="submit" disabled={isSubmitting}>
+          Versturen
+        </Button>
       </form>
     </Form>
   );

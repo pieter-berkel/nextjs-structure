@@ -16,11 +16,11 @@ export const DeletePostButton = ({ id }: DeletePostButtonProps) => {
     try {
       await deletePost({ id });
     } catch (error) {
-      toast("Something went wrong!");
+      toast.error("Something went wrong!");
       return;
     }
 
-    toast("Post deleted!");
+    toast.success("Post deleted!");
     router.push("/posts");
   };
 

@@ -33,15 +33,19 @@ export const CreatePostForm = () => {
     },
   });
 
+  const {
+    formState: { isSubmitting },
+  } = form;
+
   const onSubmit = async (values: FormValues) => {
     try {
       await createPost(values);
     } catch (error) {
-      toast("Something went wrong!");
+      toast.error("Something went wrong!");
       return;
     }
 
-    toast("Post created!");
+    toast.success("Post created!");
     router.push("/posts");
   };
 
@@ -62,7 +66,9 @@ export const CreatePostForm = () => {
           )}
         />
 
-        <Button type="submit">Versturen</Button>
+        <Button type="submit" disabled={isSubmitting}>
+          Versturen
+        </Button>
       </form>
     </Form>
   );
