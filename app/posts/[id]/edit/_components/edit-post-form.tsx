@@ -45,8 +45,7 @@ export const EditPostForm = ({ post }: EditPostFormProps) => {
     try {
       await editPost({ id: post.id, ...values });
     } catch (error) {
-      toast.error("Something went wrong!");
-      return;
+      return toast.error("Something went wrong!");
     }
 
     toast.success("Post updated!");
